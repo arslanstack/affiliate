@@ -2,17 +2,32 @@
 
 @section('content')
 
-<div class="col-lg-12 col-md-12 layout-spacing">
-    <div class="statbox widget box box-shadow">
-        <div class="widget-header">
-            <div class="row">
-                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                    <h4>Your Referral Tree</h4>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                <h4 class="mb-sm-0">Referrals</h4>
+
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                        <li class="breadcrumb-item active">Referrals</li>
+                    </ol>
                 </div>
+
             </div>
         </div>
-        <div class="widget-content widget-content-area pt-4">
-            {!! tree_builder(Auth::id())!!}
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Your Affiliate Tree</h5>
+                </div>
+                <div class="card-body">
+                    {!! tree_builder(Auth::id())!!}
+                </div>
+            </div>
         </div>
     </div>
 </div>

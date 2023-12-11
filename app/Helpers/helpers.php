@@ -260,22 +260,6 @@ if (!function_exists('get_commission_percentage')) {
         return $level ? $level->commission_percentage : 0;
     }
 }
-if (!function_exists('get_user_total_earnings')) {
-    function get_user_total_earnings($user_id)
-    {
-        // from UserEarning
-        $earning = \App\Models\UserEarning::where('user_id', $user_id)->first();
-        return $earning->total_earnings;
-    }
-}
-if (!function_exists('get_user_available_balance')) {
-    function get_user_available_balance($user_id)
-    {
-        // from UserEarning
-        $earning = \App\Models\UserEarning::where('user_id', $user_id)->first();
-        return $earning->available_balance;
-    }
-}
 if (!function_exists('get_user_total_withdrawn')) {
     function get_user_total_withdrawn($user_id)
     {
@@ -291,6 +275,18 @@ if (!function_exists('get_user_name')) {
         return $user ? $user->name : null;
     }
 }
+if (!function_exists('get_user_image')) {
+    function get_user_image($user_id)
+    {
+        $user = \App\Models\User::where('id', $user_id)->first();
+        if ($user) {
+            if ($user->image) {
+                return $user->image;
+            }
+            return null;
+        }
+    }
+}
 if (!function_exists('get_user_available_balance')) {
     function get_user_available_balance($user_id)
     {
@@ -303,5 +299,20 @@ if (!function_exists('get_user_total_earnings')) {
     {
         $user = \App\Models\UserEarning::where('user_id', $user_id)->first();
         return $user ? $user->total_earnings : null;
+    }
+}
+if (!function_exists('get_user_orders_count')) {
+    function get_user_orders_count($user_id)
+    {
+        $user = \App\Models\Order::where('user_id', $user_id)->count();
+        return $user;
+    }
+}
+if (!function_exists('get_user_referrals_count')) {
+    function get_user_referrals_count($user_id)
+    {
+        // affiliate table records count  where parent_id = $user_id
+        $user = \App\Models\Affiliate::where('parent_id', $user_id)->count();
+        return $user;
     }
 }

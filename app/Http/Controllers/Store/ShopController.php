@@ -243,10 +243,19 @@ class ShopController extends Controller
     }
     public function checkout()
     {
+        
 
         if (!Auth::check()) {
+            // if cart in session is empty then redirect to shop page
+            if (count(session()->get('cart', [])) == 0) {
+                return redirect()->route('login');
+            }
             session()->put('checkout', true);
             return redirect()->route('login');
+        }
+        // if cart in database is empty then redirect to shop page
+        if (Cart::where('user_id', auth()->id())->count() == 0) {
+            return redirect()->route('shop');
         }
         // Logic to get updated cart items based on the user's authentication status
         $carts = $this->getCarts();
@@ -295,10 +304,12 @@ class ShopController extends Controller
         }
         $shopper = User::where('id', auth()->id())->first();
         $parent = get_parent($shopper->id);
-        $grandparent = get_parent($parent->id);
-        $greatgrandparent = get_parent($grandparent->id);
+        
+        $grandparent = [];
+        $greatgrandparent = [];
 
         if ($parent != null) {
+            $grandparent = get_parent($parent->id);
             $commission_level_id = 1;
             $commission_amount = $total * ((get_commission_percentage($commission_level_id) / 100));
             $commission_percentage = get_commission_percentage($commission_level_id);
@@ -314,12 +325,22 @@ class ShopController extends Controller
             ]);
             $user_commission->save();
             $user_earning = UserEarning::where('user_id', $parent->id)->first();
+            if($user_earning == null){
+                $user_earning = new UserEarning([
+                    'user_id' => $parent->id,
+                    'total_earnings' => 0,
+                    'available_balance' => 0,
+                ]);
+                $user_earning->save();
+                $user_earning = UserEarning::where('user_id', $parent->id)->first();
+            }
             $user_earning->total_earnings = $user_earning->total_earnings + $commission_amount;
             $user_earning->available_balance = $user_earning->available_balance + $commission_amount;
             $user_earning->save();
         }
 
         if ($grandparent != null) {
+            $greatgrandparent = get_parent($grandparent->id);
             $commission_level_id = 2;
             $commission_amount = $total * ((get_commission_percentage($commission_level_id) / 100));
             $commission_percentage = get_commission_percentage($commission_level_id);
@@ -335,6 +356,15 @@ class ShopController extends Controller
             ]);
             $user_commission->save();
             $user_earning = UserEarning::where('user_id', $grandparent->id)->first();
+            if($user_earning == null){
+                $user_earning = new UserEarning([
+                    'user_id' => $grandparent->id,
+                    'total_earnings' => 0,
+                    'available_balance' => 0,
+                ]);
+                $user_earning->save();
+                $user_earning = UserEarning::where('user_id', $grandparent->id)->first();
+            }
             $user_earning->total_earnings = $user_earning->total_earnings + $commission_amount;
             $user_earning->available_balance = $user_earning->available_balance + $commission_amount;
             $user_earning->save();
@@ -356,6 +386,15 @@ class ShopController extends Controller
             ]);
             $user_commission->save();
             $user_earning = UserEarning::where('user_id', $greatgrandparent->id)->first();
+            if($user_earning == null){
+                $user_earning = new UserEarning([
+                    'user_id' => $greatgrandparent->id,
+                    'total_earnings' => 0,
+                    'available_balance' => 0,
+                ]);
+                $user_earning->save();
+                $user_earning = UserEarning::where('user_id', $greatgrandparent->id)->first();
+            }
             $user_earning->total_earnings = $user_earning->total_earnings + $commission_amount;
             $user_earning->available_balance = $user_earning->available_balance + $commission_amount;
             $user_earning->save();
@@ -364,6 +403,10 @@ class ShopController extends Controller
     }
     public function showOrder($order_number)
     {
+        // if authenticated only then show else redirect to login page
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
         $order = Order::where('order_number', $order_number)->with('items')->first();
         return view('store.order', compact('order'));
     }

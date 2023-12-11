@@ -1,86 +1,126 @@
 @extends('layouts.app')
 
 @section('content')
-
-<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
-    <div class="widget widget-card-four">
-        <div class="widget-content">
-            <div class="w-header">
-                <div class="w-info">
-                    <h6 class="value">Available Balance</h6>
-                </div>
-            </div>
-
-            <div class="w-content">
-
-                <div class="w-info">
-                    <p class="value">$ {{get_user_available_balance(Auth::id())}}</p>
-                </div>
-
-            </div>
-
-            <div class="w-progress-stats">
-                <div class="progress">
-                    <div class="progress-bar bg-gradient-secondary" role="progressbar" style="width: {{get_user_total_earnings(Auth::id()) == 0 ? 0 : (get_user_available_balance(Auth::id())/get_user_total_earnings(Auth::id())) * 100}}%" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-
-                <div class="">
-                    <div class="w-icon">
-                        <p>{{get_user_total_earnings(Auth::id()) == 0 ? 0 : (get_user_available_balance(Auth::id())/get_user_total_earnings(Auth::id())) * 100}}%</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-3 col-md-6">
+            <div class="card card-animate">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <p class="text-uppercase fw-medium text-muted mb-0">Total Earnings</p>
+                        </div>
                     </div>
-                </div>
+                    <div class="d-flex align-items-end justify-content-between mt-4">
+                        <div>
+                            <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span class="counter-value" data-target="{{get_user_total_earnings(Auth::id())}}">0</span></h4>
+                            <a href="{{route('earnings')}}" class="text-decoration-underline">View Affiliate Earnings</a>
+                        </div>
+                        <div class="avatar-sm flex-shrink-0">
+                            <span class="avatar-title bg-primary-subtle rounded fs-3">
+                                <i class="bx bx-dollar-circle text-primary"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div><!-- end col -->
 
+        <div class="col-xl-3 col-md-6">
+            <!-- card -->
+            <div class="card card-animate">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <p class="text-uppercase fw-medium text-muted mb-0">Referrals</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-end justify-content-between mt-4">
+                        <div>
+                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value" data-target="{{get_user_referrals_count(Auth::id())}}">0</span></h4>
+                            <a href="{{route('referrals')}}" class="text-decoration-underline">See details</a>
+                        </div>
+                        <div class="avatar-sm flex-shrink-0">
+                            <span class="avatar-title bg-primary-subtle rounded fs-3">
+                                <i class="bx bx-user-circle text-primary"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+
+        <div class="col-xl-3 col-md-6">
+            <div class="card card-animate bg-primary">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <p class="text-uppercase fw-medium text-white-50 mb-0">Orders</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-end justify-content-between mt-4">
+                        <div>
+                            <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="{{get_user_orders_count(Auth::id())}}">0</span></h4>
+                            <a href="{{route('orders')}}" class="text-decoration-underline text-white-50">View all orders</a>
+                        </div>
+                        <div class="avatar-sm flex-shrink-0">
+                            <span class="avatar-title bg-dark rounded fs-3">
+                                <i class="bx bx-shopping-bag text-white"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+
+        <div class="col-xl-3 col-md-6">
+            <!-- card -->
+            <div class="card card-animate">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <p class="text-uppercase fw-medium text-muted mb-0">My Balance</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-end justify-content-between mt-4">
+                        <div>
+                            <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span class="counter-value" data-target="{{get_user_available_balance(Auth::id())}}">0</span></h4>
+                            <a href="#" class="text-decoration-underline">Withdraw money</a>
+                        </div>
+                        <div class="avatar-sm flex-shrink-0">
+                            <span class="avatar-title bg-primary-subtle rounded fs-3">
+                                <i class="bx bx-wallet text-primary"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div><!-- end card body -->
+            </div><!-- end card -->
+        </div><!-- end col -->
+    </div>
+    <div class="row mt-4">
+        <div class="col-xl-12">
+            <div class="card bg-primary">
+                <div class="card-body p-0">
+                    <div class="row align-items-center">
+                        <div class="col-sm-8" id="small-screen-banner">
+                            <div class="px-3">
+                                <p class="fs-16 lh-base text-white">Refer Your Friends & Family to Earn Commission. Share your referral code with others and get a 5% commission on every order they make! Share your referral code <span class="fw-semibold">({{ Auth::user()->referral_code }})</span> or your unique referral link and earn rewards!<i class="mdi mdi-arrow-down"></i></p>
+                                <div class="mt-3">
+                                    <a id="copyReferralLink" class="btn btn-dark">Copy Referral Link</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" id="small-screen-banner">
+                            <div class="px-3">
+                                <img src="{{asset('user/assets/images/user-illustarator-1.png')}}" class="img-fluid" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end card-body-->
             </div>
         </div>
     </div>
 </div>
-
-<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
-    <div class="widget widget-card-five">
-        <div class="widget-content">
-            <div class="account-box">
-
-                <div class="info-box">
-                    <div class="icon">
-                        <span>
-                            <img src="{{asset('user/src/assets/img/money-bag.png')}}" alt="money-bag">
-                        </span>
-                    </div>
-
-                    <div class="balance-info">
-                        <h6>Total Earnings</h6>
-                        <p>${{get_user_total_earnings(Auth::id())}}</p>
-                    </div>
-                </div>
-
-                <div class="card-bottom-section">
-                    <a href="{{route('earnings')}}" class="">View Details</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-    <div class="widget widget-card-five">
-        <div class="widget-content">
-            <div class="account-box">
-
-                <div class="info-box">
-                    <div class="balance-info">
-                        <p>Refer Your Friends & Family to Earn Commission</p> <br>
-                        <h6 class="text-start float-start">Your referral code is: <span><strong>{{ Auth::user()->referral_code }}</strong></span></h6>
-                    </div>
-                    <div class="card-bottom-section text-start float-start">
-                        <a id="copyReferralLink" class="btn btn-sm btn-primary">Copy Referral Link</a>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
-</div>
-
 <script>
     document.getElementById('copyReferralLink').addEventListener('click', function() {
         var referralLink = document.createElement('textarea');
@@ -92,7 +132,7 @@
         Toastify({
             text: 'Referral Link Copied!',
             duration: 3000,
-            gravity: 'bottom',
+            gravity: 'top',
             position: 'right',
         }).showToast();
     });

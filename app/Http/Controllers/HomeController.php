@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\UserCommission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -46,6 +47,11 @@ class HomeController extends Controller
     public function profile()
     {
         return view('user.profile');
+    }
+    public function orders()
+    {
+        $orders = Order::where('user_id', Auth::id())->orderBy('id', 'desc')->get();
+        return view('user.orders', compact('orders'));
     }
     public function editProfile(Request $request)
     {

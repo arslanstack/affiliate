@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\Store\ShopController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\CommissionLevelsController;
+use App\Http\Controllers\Admin\OrdersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,9 +57,11 @@ Route::prefix('admin')->group(function () {
         Route::post('/products-update', [ProductsController::class, 'update'])->name('admin.products-update');
         Route::post('/products-delete', [ProductsController::class, 'delete'])->name('admin.products-delete');
 
-
         Route::get('/commission-levels', [CommissionLevelsController::class, 'index'])->name('admin.commission-levels');
         Route::post('/commission-levels-update', [CommissionLevelsController::class, 'update'])->name('admin.commission-levels-update');
+
+        Route::get('/orders', [OrdersController::class, 'index'])->name('admin.orders');
+        Route::get('/order-details/{order_number}', [OrdersController::class, 'details'])->name('admin.order-details');
     });
 });
 
@@ -66,6 +69,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
 Route::get('/earnings', [App\Http\Controllers\HomeController::class, 'earnings'])->name('earnings');
 Route::get('/referrals', [App\Http\Controllers\HomeController::class, 'referrals'])->name('referrals');
+Route::get('/orders', [App\Http\Controllers\HomeController::class, 'orders'])->name('orders');
 Route::post('/editProfile', [App\Http\Controllers\HomeController::class, 'editProfile'])->name('editProfile');
 Route::post('/editPassword', [App\Http\Controllers\HomeController::class, 'editPassword'])->name('editPassword');
 Route::get('show-order/{order_number}',  [ShopController::class, 'showOrder'])->name('show.order');

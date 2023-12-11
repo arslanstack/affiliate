@@ -11,7 +11,7 @@
 
     <!-- Fav Icon -->
     <link rel="icon" href="{{asset('assets/images/favicon.ico')}}" type="image/x-icon">
-
+    <link rel="stylesheet" href="{{asset('assets/css/custom-preloader.css')}}">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
@@ -54,15 +54,9 @@
 <body>
 
     <div class="boxed_wrapper">
-        <!-- Preloader -->
-        <div class="loader-wrap">
-            <div class="preloader" style="background-color: white;"></div>
-            <!-- <div class="layer layer-one"><span class="overlay"></span></div>
-            <div class="layer layer-two"><span class="overlay"></span></div>
-            <div class="layer layer-three"><span class="overlay"></span></div> -->
+        <div class="loadingio-spinner-spinner-fp2tsfk6ols">
+            <div class="custom-preloader"></div>
         </div>
-
-
         <!-- main header -->
         <header class="main-header style-four">
             <div class="header-upper">
@@ -269,7 +263,12 @@
             <i class="fas fa-long-arrow-alt-up"></i>
         </button>
     </div>
-
+    <script>
+        $(window).on('load', function() {
+            // Hide the preloader
+            $('.loadingio-spinner-spinner-fp2tsfk6ols').fadeOut('slow');
+        });
+    </script>
 
     <!-- jequery plugins -->
     <script src="{{asset('assets/js/jquery.js')}}"></script>
