@@ -104,6 +104,7 @@
                     <div class="row align-items-center">
                         <div class="col-sm-8" id="small-screen-banner">
                             <div class="px-3">
+                                <h2 class="text-white display-6">Refer & Earn Rewards</h2>
                                 <p class="fs-16 lh-base text-white">Refer Your Friends & Family to Earn Commission. Share your referral code with others and get a 5% commission on every order they make! Share your referral code <span class="fw-semibold">({{ Auth::user()->referral_code }})</span> or your unique referral link and earn rewards!<i class="mdi mdi-arrow-down"></i></p>
                                 <div class="mt-3">
                                     <a id="copyReferralLink" class="btn btn-dark">Copy Referral Link</a>
@@ -116,7 +117,7 @@
                             </div>
                         </div>
                     </div>
-                </div> <!-- end card-body-->
+                </div>
             </div>
         </div>
     </div>
@@ -130,7 +131,7 @@
         document.execCommand('copy');
         document.body.removeChild(referralLink);
         Toastify({
-            text: 'Referral Link Copied!',
+            text: 'Copied!',
             duration: 3000,
             gravity: 'top',
             position: 'right',
