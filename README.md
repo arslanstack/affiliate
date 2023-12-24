@@ -14,7 +14,7 @@ This Laravel-based E-Commerce system integrates an affiliate-based commission st
 
 ## Project Highlights
 
-Explore some snapshots from the project:
+Explore some of the snapshots from the project:
 
 ![E-Commerce](https://projects.arslanstack.com/photos/aff8.png)
 ![E-Commerce](https://projects.arslanstack.com/photos/aff9.png)
