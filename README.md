@@ -1,6 +1,6 @@
 # Laravel E-Commerce System with Affiliate-Based Commission
 
-![E-Commerce](https://projects.arslanstack.com/photos/aff1.png)
+![E-Commerce](https://projects.arslanstack.com/photos/affiliate/1.png)
 
 ## Project Overview
 
@@ -16,13 +16,15 @@ This Laravel-based E-Commerce system integrates an affiliate-based commission st
 
 Explore some of the snapshots from the project:
 
-![E-Commerce](https://projects.arslanstack.com/photos/aff8.png)
-![E-Commerce](https://projects.arslanstack.com/photos/aff9.png)
-![E-Commerce](https://projects.arslanstack.com/photos/aff10.png)
-![E-Commerce](https://projects.arslanstack.com/photos/aff2.png)
-![E-Commerce](https://projects.arslanstack.com/photos/aff3.png)
-![E-Commerce](https://projects.arslanstack.com/photos/aff4.png)
-![E-Commerce](https://projects.arslanstack.com/photos/aff5.png)
-![E-Commerce](https://projects.arslanstack.com/photos/aff6.png)
-![E-Commerce](https://projects.arslanstack.com/photos/aff7.png)
+![E-Commerce](https://projects.arslanstack.com/photos/affiliate/2.png)
+![E-Commerce](https://projects.arslanstack.com/photos/affiliate/3.png)
+![E-Commerce](https://projects.arslanstack.com/photos/affiliate/4.png)
+![E-Commerce](https://projects.arslanstack.com/photos/affiliate/5.png)
+![E-Commerce](https://projects.arslanstack.com/photos/affiliate/6.png)
+![E-Commerce](https://projects.arslanstack.com/photos/affiliate/7.png)
+![E-Commerce](https://projects.arslanstack.com/photos/affiliate/8.png)
+![E-Commerce](https://projects.arslanstack.com/photos/affiliate/9.png)
+![E-Commerce](https://projects.arslanstack.com/photos/affiliate/10.png)
+![E-Commerce](https://projects.arslanstack.com/photos/affiliate/11.png)
+![E-Commerce](https://projects.arslanstack.com/photos/affiliate/12.png)
 
